@@ -1,0 +1,20 @@
+package org.oma;
+
+import org.oma.LoanApplication;
+
+rule "Approuver si revenu suffisant"
+ruleflow-group "loan-evaluation"
+when
+    $l : LoanApplication( income > amount )
+then
+    $l.setApproved(true);
+    System.out.println("✅ Prêt approuvé pour " + $l.getApplicant());
+end
+
+rule "Rejeter sinon"
+when
+    $l : LoanApplication( income <= amount )
+then
+    $l.setApproved(false);
+    System.out.println("❌ Prêt rejeté pour " + $l.getApplicant());
+end
