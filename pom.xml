@@ -73,6 +73,14 @@
             <groupId>org.kie.kogito</groupId>
             <artifactId>kogito-quarkus-processes</artifactId>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.kie.kogito</groupId>
+            <artifactId>kogito-addons-quarkus-process-management</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
