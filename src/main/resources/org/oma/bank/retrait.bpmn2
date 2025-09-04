@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns:xsi="xsi" id="_WRM_4Gu_ED6p6NzmjYYlfw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_creditcardItem" structureRef="org.oma.bank.CreditCard"/>
+  <bpmn2:itemDefinition id="_cardisvalidItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_InMessageType" structureRef=""/>
+  <bpmn2:itemDefinition id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_OutMessageType" structureRef=""/>
+  <bpmn2:message id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_InMessage" itemRef="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_InMessageType"/>
+  <bpmn2:message id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_OutMessage" itemRef="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_OutMessageType"/>
+  <bpmn2:interface id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_ServiceInterface" name="org.oma.bank.CheckCardService" implementationRef="org.oma.bank.CheckCardService">
+    <bpmn2:operation id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_ServiceOperation" name="get" implementationRef="get">
+      <bpmn2:inMessageRef>_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_InMessage</bpmn2:inMessageRef>
+      <bpmn2:outMessageRef>_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_OutMessage</bpmn2:outMessageRef>
+    </bpmn2:operation>
+  </bpmn2:interface>
+  <bpmn2:collaboration id="_05442A6A-4A5C-4269-A533-BEA0FB3A1FD9" name="Default Collaboration">
+    <bpmn2:participant id="_798AE590-FBB5-4F55-AC23-BCE2B474DA15" name="Pool Participant" processRef="retrait"/>
+  </bpmn2:collaboration>
+  <bpmn2:process id="retrait" drools:packageName="org.oma.bank" drools:version="1.0" drools:adHoc="false" name="retrait" isExecutable="true" processType="Public">
+    <bpmn2:property id="creditcard" itemSubjectRef="_creditcardItem" name="creditcard"/>
+    <bpmn2:property id="cardisvalid" itemSubjectRef="_cardisvalidItem" name="cardisvalid"/>
+    <bpmn2:sequenceFlow id="_2474F7F7-46ED-440F-AA43-1844A5771D63" sourceRef="_5C2851F8-07B2-42D1-B0A7-ACF38CD635E1" targetRef="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7"/>
+    <bpmn2:serviceTask id="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7" drools:serviceimplementation="Java" drools:serviceinterface="org.oma.bank.CheckCardService" drools:serviceoperation="get" name="Check Card Validity" implementation="Java" operationRef="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7_ServiceOperation">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Check Card Validity]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_2474F7F7-46ED-440F-AA43-1844A5771D63</bpmn2:incoming>
+    </bpmn2:serviceTask>
+    <bpmn2:startEvent id="_5C2851F8-07B2-42D1-B0A7-ACF38CD635E1" name="StartEvent">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[StartEvent]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_2474F7F7-46ED-440F-AA43-1844A5771D63</bpmn2:outgoing>
+    </bpmn2:startEvent>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="retrait">
+      <bpmndi:BPMNShape id="shape__5C2851F8-07B2-42D1-B0A7-ACF38CD635E1" bpmnElement="_5C2851F8-07B2-42D1-B0A7-ACF38CD635E1">
+        <dc:Bounds height="56" width="56" x="246" y="171"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7" bpmnElement="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7">
+        <dc:Bounds height="102" width="154" x="382" y="148"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__5C2851F8-07B2-42D1-B0A7-ACF38CD635E1_to_shape__4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7" bpmnElement="_2474F7F7-46ED-440F-AA43-1844A5771D63">
+        <di:waypoint x="274" y="199"/>
+        <di:waypoint x="382" y="199"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters/>
+          <bpsim:ElementParameters elementRef="_5C2851F8-07B2-42D1-B0A7-ACF38CD635E1">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+          </bpsim:ElementParameters>
+          <bpsim:ElementParameters elementRef="_4C9B7DFC-D1AC-47E4-A80F-05C13C685FB7">
+            <bpsim:TimeParameters>
+              <bpsim:ProcessingTime>
+                <bpsim:NormalDistribution mean="0" standardDeviation="0"/>
+              </bpsim:ProcessingTime>
+            </bpsim:TimeParameters>
+            <bpsim:ResourceParameters>
+              <bpsim:Availability>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Availability>
+              <bpsim:Quantity>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:Quantity>
+            </bpsim:ResourceParameters>
+            <bpsim:CostParameters>
+              <bpsim:UnitCost>
+                <bpsim:FloatingParameter value="0"/>
+              </bpsim:UnitCost>
+            </bpsim:CostParameters>
+          </bpsim:ElementParameters>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_WRM_4Gu_ED6p6NzmjYYlfw</bpmn2:source>
+    <bpmn2:target>_WRM_4Gu_ED6p6NzmjYYlfw</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>
