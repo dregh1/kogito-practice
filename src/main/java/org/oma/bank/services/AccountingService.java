@@ -1,4 +1,4 @@
-package org.oma.bank;
+package org.oma.bank.services;
 
 public class AccountingService {
 }
