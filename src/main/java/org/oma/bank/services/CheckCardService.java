@@ -13,4 +13,8 @@ public class CheckCardService {
         System.out.println(" \n ## check card");
         return creditCard;
     }
+
+    public void printSold(){
+        System.out.println("1 000 000 $");
+    }
 }
